@@ -19,12 +19,6 @@ module.exports = async env => {
       filename: '[name].app.js',
       publicPath: '/',
     },
-    resolve: {
-      alias: {
-        /* 用于开启hooks热加载 */
-        'react-dom': '@hot-loader/react-dom'
-      }
-    },
     devtool: 'eval-source-map',
     devServer: {
       clientLogLevel: 'warning',
@@ -91,5 +85,5 @@ module.exports = async env => {
       }),
     ]
 
-  })
+  });
 };
