@@ -1,0 +1,51 @@
+@import './var';
+
+// 占位文本颜色
+@mixin placeholder($color: $default-placeholder-color) {
+  &::placeholder {
+    color: $color;
+  }
+}
+
+// 超出隐藏
+@mixin ellipsis-x($row-num: 1) {
+  @if $row-num!=1 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: $row-num;
+    -webkit-box-orient: vertical;
+  } @else {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+// 清除浮动
+@mixin clearfix() {
+  &::after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+}
+
+// size
+@mixin size($size) {
+  width: $size;
+  height: $size;
+}
+
+// 计算rem值
+@function rem($val) {
+  @return $val / $reality-width / 10 + rem;
+}
+
+@function remH($val) {
+  @return $val / $reality-height / 10 + rem;
+}
+
+// 计算px值
+@function px($val) {
+  @return $val / $reality-width / $adaptive-width + px;
+}

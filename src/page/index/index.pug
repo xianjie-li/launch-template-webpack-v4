@@ -1,0 +1,34 @@
+extends ../template/layout.pug
+
+block metas
+  meta(http-equiv="Content-Type", content="text/html;charset=UTF-8")
+
+block body
+    
+    h2 图片引用
+
+    p.desc 图片引用请使用require()
+    img(width="100" src=require('@/assets/img/jpg1.jpg'))
+
+    br
+
+    p.desc 引用public目录下的文件请使用模板变量public
+    img(width="100" src=`${public}/img/jpg4.jpg`)
+
+    h2 完整的pug语法加持
+    p.desc 遍历dom结构
+    each val in (new Array(5))
+      include ../template/test.pug
+    
+    br
+
+    p.desc 自定义过滤器等 
+    :testFilter('arg1', 'arg2')
+
+    h2 也可以使用html模板，内置ejs引擎 
+
+    a(href="./about.html"): span to about.htm
+
+block script
+  script.
+    // 执行一段内联脚本
