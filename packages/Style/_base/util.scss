@@ -35,17 +35,3 @@
   width: $size;
   height: $size;
 }
-
-// 计算rem值
-@function rem($val) {
-  @return $val / $reality-width / 10 + rem;
-}
-
-@function remH($val) {
-  @return $val / $reality-height / 10 + rem;
-}
-
-// 计算px值
-@function px($val) {
-  @return $val / $reality-width / $adaptive-width + px;
-}

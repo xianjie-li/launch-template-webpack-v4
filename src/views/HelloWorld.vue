@@ -9,18 +9,29 @@
     <div :class="$style.blue">css module + sass变量</div>
     <div class="green">src外链</div>
 
-    <h2>render函数 + jsx</h2>
+    <h2>render函数 + jsx & pug</h2>
     <Test></Test>
+    <Test2></Test2>
+    <Spin :show="true"></Spin>
   </div>
 </template>
 
 <script>
 import Test from './Test';
+import Test2 from './Test2';
+
+import { Spin } from '../../lib/index/index';
+import '../../lib/index/style/index.css';
+
+// import Spin from '../../lib/Spin';
+// import '../../lib/Spin/style/index.css';
 
 export default {
   name: 'HelloWorld',
   components: {
-    Test
+    Test,
+    Test2,
+    Spin,
   },
   data() {
     return {};
@@ -43,7 +54,6 @@ export default {
 <style lang='scss' module>
 .blue {
   color: blue;
-  font-size: $font-size-20;
 }
 </style>
 

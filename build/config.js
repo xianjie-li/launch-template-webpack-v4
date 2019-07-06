@@ -9,7 +9,7 @@ module.exports = {
   htmlAssetsHash: false, // 打包时给html的引用资源打上hash
   dropConsole: true, // 移除console
   sassOption: {
-    data: '@import "@/style/_base/index.scss";',
+    // data: '@import "@/style/_base/index.scss";',
     precision: 3
   },
   proxy: {},
@@ -34,5 +34,5 @@ module.exports = {
     test: {
       BASE_URL: '/api/test'
     }
-  }
+  },
 };

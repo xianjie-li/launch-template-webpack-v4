@@ -4,7 +4,7 @@
 
 ## 说明
 
-用于日常开发的webpack4配置，除了基本配置外添加了多页面支持、使用pug替代默认的ejs模板、基本包含所有常用的功能配置，对vue提供开箱即用的支持。react版见<<https://github.com/Iixianjie/launch-template-webpack-v4>>
+用于日常开发的webpack4配置，除了基本配置外添加了多页面支持、使用pug替代默认的ejs模板、基本包含所有常用的功能配置。对vue提供开箱即用的支持，同时提供了一套library的打包配置，支持打包vue组件库和通常的umd库。react版见<<https://github.com/Iixianjie/launch-template-webpack-v4>>
 
 <br>
 
@@ -77,13 +77,9 @@ module.exports = {
 
 <br>
 
-## 开箱即用的react配置
+## 开箱即用的vue配置
 
-* react开发需要的一些stage如语法 import()、成员变量属性等
-* 热加载
-* 完整的启动示例，包括路由、store、以及一些常用的基础组件和自造的轮子
-* 一个推荐的项目结构
-* 使用 name.m.(c|sa|sc)ss的规则来启用css module
+* 基于vueloader和@vue/babel-preset-app插件的vue配置，对vue文件的处理方式与vue-cli完全一致。
 
 <br>
 
@@ -119,74 +115,11 @@ css块，具体规则如下
 ## TODO
 
 - [x] 选择是否一次载入所有页面
-- [x] 配置时给模板传递一些额外信息
-- [x] dll
+- [x] ~~dll~~
 - [x] pug
-- [x] react
+- [x] vue
+- [x] 支持vue、普通lib、多出口的library打包配置
+- [x] 配置时给模板传递一些额外信息
+- [ ] 添加新的html后自动重启服务
 - [ ] mock
 
-<br>
-
-## 使用antd
-通过babel-plugin-import实现按需加载，配置less来自定义主题
-
->  配置按需加载只能减少css的大小，js包还是会一样的大,等4.0更新后应该会有所改善
-
-### 安装依赖
-```
-yarn add babel-plugin-import less less-loader --dev
-yarn add antd
-```
-
-.babelrc
-```js
-plugins: [
-  [
-    //...
-  ],
-  ['import', {
-      libraryName: 'antd',
-      "style": true
-  }],.
-]
-```
-
-.webpack.dev.js
-```js
-{
-  test: /\.less$/,
-  use: [{
-    loader: devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
-  },, {
-    loader: 'css-loader', // translates CSS into CommonJS
-  }, {
-    loader: 'less-loader', // compiles Less to CSS
-    options: {
-      modifyVars: {
-        'primary-color': '#C61A23',
-      },
-      javascriptEnabled: true,
-    },
-  }],
-},
-```
-
-### 将icons分为异步块
-
-```js
-/* 异步加载antd icons， 见https://github.com/ant-design/ant-design/issues/12011 */
-        {
-          loader:'webpack-ant-icon-loader',
-          enforce: 'pre',
-          include:[
-            require.resolve('@ant-design/icons/lib/dist')
-          ]
-        },
-```
-
-<br>
-
-## 注意事项
-
-* 没有使用url-loader是因为base64会比实际文件大上一些，而且在打异步包时容易出现两个包中重复打包的情况。
-* 想到再写
