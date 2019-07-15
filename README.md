@@ -9,7 +9,7 @@
 <br>
 
 ## repo
-<<https://github.com/Iixianjie/launch-template-webpack-v4-vue>>
+<https://github.com/Iixianjie/launch-template-webpack-v4>
 
 <br>
 
