@@ -26,9 +26,6 @@ module.exports = env => {
       pathinfo: false
     },
     devtool: false,
-    module: {
-      rules: []
-    },
     optimization: {
       minimizer: [
         new TerserJSPlugin({

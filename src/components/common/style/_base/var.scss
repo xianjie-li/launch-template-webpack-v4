@@ -1,0 +1,135 @@
+@import './theme';
+
+//栅格默认列数
+$col-num: 24;
+//栅格容器宽度
+$container-width: 1024px;
+//列宽
+$col-one-width: 100% / $col-num;
+
+/* 尺寸 */
+// ========================================================================
+
+// 间距
+$space-4px: 4px;
+$space-1: 8px;
+$space-2: 16px;
+$space-3: 24px;
+$space-4: 32px;
+$space-5: 40px;
+$space-6: 48px;
+$space-7: 56px;
+$space-8: 64px;
+
+
+//默认圆角半径
+$default-border-radius: 4px !default;
+
+/* 文字 */
+$font-size-sm: 12px;
+$font-size-s: 14px;   // pc默认字体
+$font-size-m: 16px;   // 移动端默认字体
+$font-size-20: 20px;
+$font-size-24: 24px;
+$font-size-30: 30px;
+$font-size-38: 38px;
+$font-size-46: 46px;
+$font-size-56: 56px;
+$font-size-68: 68px;
+
+$font-weight-bold: 600;
+
+// $default-font-size: $font-size-s;
+$default-font-size: $font-size-m;
+
+//默认字体
+$font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI',
+  'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Helvetica Neue',
+  Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+  'Segoe UI Symbol' !default;
+$code-family: Consolas, Menlo, Courier, monospace;
+$number-family: tabular-nums;
+
+/* 动画 */
+// ========================================================================
+$default-transtion: 0.3s !default;
+
+/* z-index */
+// ========================================================================
+$z-index: 1000 !default;
+$z-index-drawer: 1200 !default;
+$z-index-modal: 1400 !default;
+$z-index-tooltip: 1600 !default;
+
+/* 颜色 */
+// ========================================================================
+
+// 中性色
+$b-title: rgba(0, 0, 0, 0.9); // Title
+$b-primary: rgba(0, 0, 0, 0.75); // 主要文本色
+$b-second: rgba(0, 0, 0, 0.45); // 次要文本色
+$b-disable: rgba(0, 0, 0, 0.25); // 禁用
+$b-border: rgba(0, 0, 0, 0.15); // 边框/分割线
+$b-bg: rgba(0, 0, 0, 0.04); // 背景色
+
+$w-title: rgba(255, 255, 255, 1);
+$w-primary: rgba(255, 255, 255, 0.85);
+$w-second: rgba(255, 255, 255, 0.65);
+$w-disable: rgba(255, 255, 255, 0.45);
+$w-border: rgba(255, 255, 255, 0.25);
+$w-bg: rgba(255, 255, 255, 0.09);
+
+//暗提示色
+$color-tips: $b-disable !default;
+//弹层蒙版色
+$color-mask: $b-disable !default;
+
+//信息
+$color-info: #2e88fa !default;
+//成功
+$color-success: #13ce66 !default;
+//错误
+$color-error: #F83D48 !default;
+//警示
+$color-warn: #FFC838 !default;
+
+//a连接默认色
+$a-color: $geekblue-6 !default;
+$a-hover-color: $geekblue-4 !default;
+
+//主题色(默认 色板第6个、浅色、深色)
+$theme-color: #61dafb !default;
+$theme-color-light: rgba(#61dafb, 0.7) !default;
+$theme-color-dark: #21b9fb !default;
+
+//默认placeholder颜色
+$default-placeholder-color: $b-second !default;
+
+//边框
+$border-color: $b-border !default;
+
+// 阴影
+$shadow-1: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2)  !default;
+
+$shadow-1-half: 0 3px 3px 0 rgba(0, 0, 0, 0.14), 0 1px 7px 0 rgba(0, 0, 0, 0.12),
+0 3px 1px -1px rgba(0, 0, 0, 0.2) !default;
+
+$shadow-2: 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12),
+0 2px 4px -1px rgba(0, 0, 0, 0.3) !default;
+
+$shadow-3: 0 8px 17px 2px rgba(0, 0, 0, 0.14),
+0 3px 14px 2px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.2) !default;
+
+$shadow-4: 0 16px 24px 2px rgba(0, 0, 0, 0.14),
+0 6px 30px 5px rgba(0, 0, 0, 0.12), 0 8px 10px -7px rgba(0, 0, 0, 0.2) !default;
+
+$shadow-5: 0 24px 38px 3px rgba(0, 0, 0, 0.14),
+0 9px 46px 8px rgba(0, 0, 0, 0.12), 0 11px 15px -7px rgba(0, 0, 0, 0.2) !default;
+
+$shadow-hover: 0 8px 17px 0 rgba(0, 0, 0, 0.2),
+0 6px 20px 0 rgba(0, 0, 0, 0.19) !default;
+
+//默认元素阴影
+$default-box-shadow: $shadow-1;
+

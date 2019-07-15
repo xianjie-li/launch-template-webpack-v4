@@ -1,0 +1,88 @@
+@import "../common/style/index";
+
+.bk-result {
+  &_wrap {
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #fff;
+    z-index: 1000;
+    line-height: 1.2;
+  }
+
+  &_cont {
+    position: absolute;
+    top: 16%;
+    left: 0;
+    right: 0;
+    text-align: center;
+    padding: 24px;
+  }
+
+  &_icon {
+
+    img {
+      height: 180px;
+    }
+
+    svg {
+      display: inline-block;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      overflow: hidden;
+    }
+  }
+
+  &_title {
+    font-size: 22px;
+    color: rgba(0,0,0,0.9);
+    margin: 24px 0 16px;
+
+  }
+
+  &_desc {
+    color: rgba(0,0,0,0.45);
+    font-size: 16px;
+  }
+
+  &_link {
+    display: block;
+    appearance: none;
+    outline: none;
+    background-color: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    font-size: 16px;
+    padding: 6px 32px;
+    margin: 16px auto;
+    border-radius: 4px;
+    transition: box-shadow .3s;
+    user-select: none;
+    box-shadow: -2px -2px 4px inset rgba(0, 0, 0, 0.04);
+    will-change: auto;
+
+    &:focus {
+      box-shadow: 0 0 0 2px #2e88fa;
+    }
+  }
+
+  &_link_red {
+    background-color: #FFC838;
+    color: #fff;
+  }
+
+  &_cont2 {
+    padding: 64px 24px 0;
+    text-align: center;
+  }
+
+  &_icon2 {
+    margin-bottom: 16px;
+
+    img {
+      height: 100px;
+    }
+  }
+}

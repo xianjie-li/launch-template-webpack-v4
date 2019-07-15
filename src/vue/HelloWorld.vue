@@ -12,7 +12,6 @@
     <h2>render函数 + jsx & pug</h2>
     <Test></Test>
     <Test2></Test2>
-    <Spin :show="true"></Spin>
   </div>
 </template>
 
@@ -20,18 +19,11 @@
 import Test from './Test';
 import Test2 from './Test2';
 
-import { Spin } from '../../lib/index/index';
-import '../../lib/index/style/index.css';
-
-// import Spin from '../../lib/Spin';
-// import '../../lib/Spin/style/index.css';
-
 export default {
   name: 'HelloWorld',
   components: {
     Test,
     Test2,
-    Spin,
   },
   data() {
     return {};

@@ -10,7 +10,7 @@ const TerserJSPlugin = require('terser-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 const conf = require('./config');
-const getModules = require('./getModules');
+const getModules = require('./utils/util').getModules;
 require('./buildEntryFile');
 const enrtys = require('../entrys.json');
 
@@ -36,7 +36,7 @@ module.exports = ({ NODE_ENV }) => {
         new TerserJSPlugin({
           terserOptions: {
             compress: {
-              drop_console: conf.dropConsole
+              // drop_console: conf.dropConsole
             }
           }
         }),
@@ -46,10 +46,12 @@ module.exports = ({ NODE_ENV }) => {
 
     externals: [
       /^@babel\/runtime/,
-      /^lodash\//,
+      /^lodash/,
       {
         '@lxjx/utils': 'utils',
         vue: 'Vue',
+        react: 'React',
+        moment: 'moment',
         lodash: {
           commonjs: 'lodash',
           amd: 'lodash',
@@ -62,7 +64,7 @@ module.exports = ({ NODE_ENV }) => {
       extensions: conf.extensions
     },
 
-    module: getModules(devMode, NODE_ENV, MiniCssExtractPlugin),
+    module: getModules(devMode, MiniCssExtractPlugin),
 
     plugins: [
       new VueLoaderPlugin(),
@@ -74,7 +76,6 @@ module.exports = ({ NODE_ENV }) => {
         analyzerMode: 'static', // disabled、server、static
         openAnalyzer: false
       }),
-      new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /zh-cn/),
       new MiniCssExtractPlugin({
         filename: '[name]/style/index.css'
       })

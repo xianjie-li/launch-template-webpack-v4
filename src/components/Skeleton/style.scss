@@ -1,0 +1,100 @@
+@import "../common/style/index";
+
+$bg-color: #e9e9e9;
+
+.bk-skeleton {
+  &_item {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    padding: 16px;
+    background-color: #fff;
+  }
+
+  &_img {
+    width: 50px;
+    height: 50px;
+    border-radius: 2px;
+    background-color: $bg-color;
+    margin-right: 16px;
+  }
+
+  &_cont {
+    flex: 1;
+  }
+
+  &_title {
+    height: 24px;
+    background-color: $bg-color;
+    border-radius: 2px;
+
+    & + & {
+      margin-top: 16px;
+    }
+  }
+
+  &_textCont {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &_text {
+    flex: 0 1 auto;
+    height: 16px;
+    margin-top: 16px;
+    margin-right: 8px;
+    background-color: $bg-color;
+    border-radius: 2px;
+
+    &:nth-child(4n) {
+      margin-right: 0;
+    }
+  }
+
+  &_foot {
+    position: absolute;
+    height: 16px;
+    bottom: 16px;
+    right: 16px;
+    left: 16px;
+    background-color: $bg-color;
+  }
+
+  &_title,
+  &_img,
+  &_text {
+    background-image: linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0.2) 25%,
+        transparent 55%
+    );
+    background-size: 20rem 20rem;
+    animation: skeleton-stripes 2s linear infinite;
+  }
+
+  &_text {
+    &:nth-child(2n-1) {
+      animation-delay: .5s
+    }
+    &:nth-child(3n) {
+      animation-delay: .8s
+    }
+  }
+
+  &_title {
+    &:nth-child(2n-1) {
+      animation-delay: .2s
+    }
+  }
+
+}
+
+
+@keyframes skeleton-stripes {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 20rem 0;
+  }
+}

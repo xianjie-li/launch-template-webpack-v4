@@ -1,0 +1,67 @@
+@import "./var";
+/*容器*/
+.container{
+  margin-right: auto;
+  margin-left: auto;
+  width: $container-width;
+}
+
+.container-fluid {
+  margin-right: auto;
+  margin-left: auto;
+}
+.container:before,
+.container:after,
+.container-fluid:before,
+.container-fluid:after,
+.row:before,
+.row:after {
+  content: " ";
+  display: table;
+}
+.container:after,
+.container-fluid:after,
+.row:after {
+  clear: both;
+}
+/*容器 end*/
+
+/*col */
+@for $i from 1 through $col-num{
+  .col-#{$i}{
+    position: relative;
+    min-height: 1px;
+    float: left;
+  }
+}
+
+@for $i from 1 through $col-num{
+  .col-#{$i}{
+    width: $col-one-width * $i;
+  }
+}
+/*col end*/
+
+/*pull & push */
+.col-pull-0{right:auto;}
+
+@for $i from 1 through $col-num{
+  .pull-#{$i}{
+    right: $col-one-width * $i;
+  }
+}
+.col-push-0{right:auto;}
+@for $i from 1 through $col-num{
+  .push-#{$i}{
+    left: $col-one-width * $i;
+  }
+}
+/*pull & push end*/
+
+/*offset & push */
+@for $i from 0 through $col-num{
+  .offset-#{$i}{
+    margin-left: $col-one-width * $i;
+  }
+}
+/*offset end*/

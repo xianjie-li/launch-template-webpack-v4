@@ -19,6 +19,12 @@ module.exports = async env => {
       filename: '[name].app.js',
       publicPath: '/',
     },
+    resolve: {
+      alias: {
+        /* 用于开启hooks热加载 */
+        'react-dom': '@hot-loader/react-dom'
+      }
+    },
     devtool: 'eval-source-map',
     devServer: {
       clientLogLevel: 'warning',
@@ -27,7 +33,7 @@ module.exports = async env => {
       port,
       hot: true,
       // publicPath: '/',   默认
-      quiet: true,
+      quiet: true,  // 适应FriendlyErrorsWebpackPlugin
       overlay: {
         warnings: true,
         errors: true
@@ -51,11 +57,6 @@ module.exports = async env => {
         });
       }
     },
-    // module: {
-    //   rules: [
-
-    //   ]
-    // },
     plugins: [
       new webpack.HotModuleReplacementPlugin(),
       new FriendlyErrorsWebpackPlugin({
@@ -65,22 +66,17 @@ module.exports = async env => {
         },
         // 桌面通知
         onErrors: (severity, errors) => {
+          const error = errors[0];
+
           if (severity !== 'error') {
             notifier.notify({
-              title: 'launch',
-              message: 'warn',
-              // contentImage: join(__dirname, '../assets/warn.png'),
+              title: severity !== 'error' ? '😭错误' : '😅警告',
+              message: `${severity} : ${error.name}`,
+              subtitle: error.file || '',
               sound: 'Glass',
             });
             return;
           }
-          const error = errors[0];
-          notifier.notify({
-            title: 'launch',
-            message: `${severity} : ${error.name}`,
-            subtitle: error.file || '',
-            sound: 'Glass',
-          });
         },
       }),
     ]

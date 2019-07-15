@@ -1,6 +1,8 @@
 const path = require('path');
 
+/* 所有配置项在模板中都是可访问的 */
 module.exports = {
+  v: 'react', // 用于区分babel配置，可选值['vue', 'react]
   publicPath: './', // 资源访问路径
   publicDirName: 'public', // 集中存放静态资源的目录名
   gizp: true,
@@ -13,10 +15,10 @@ module.exports = {
     precision: 3
   },
   proxy: {},
-  extensions: ['.js', '.vue', '.jsx'],
+  extensions: ['.js', '.jsx', '.vue'],
   alias: {
     '@': path.resolve(__dirname, '../src'),
-    // vue: 'vue/dist/vue.js'  // 当需要在html中使用模板语法时，开启此项替换默认的runtime版本
+    // vue: 'vue/dist/vue.js'  // 当需要在html中使用vue模板语法时，使用带编译器的vue
   },
 
   page: {
@@ -31,8 +33,5 @@ module.exports = {
     prod: {
       BASE_URL: '/api/prod'
     },
-    test: {
-      BASE_URL: '/api/test'
-    }
   },
 };

@@ -46,6 +46,7 @@ function build(webpackConfig, cb) {
   });
 }
 
+require('./buildEntryFile');
 fs.removeSync(path.resolve(__dirname, '../lib'));
 
 build(libConf({ NODE_ENV: 'prod' }), () => {

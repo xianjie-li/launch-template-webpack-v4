@@ -1,6 +1,8 @@
 meta(charset="UTF-8")
 meta(name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no")
 meta(http-equiv="X-UA-Compatible" content="ie=edge")
-script.
-  var modernBrowser = ('fetch' in window && 'assign' in Object);if (!modernBrowser){document.write('<script src="https://lib.baomitu.com/babel-polyfill/7.4.4/polyfill.min.js"><\/script>')}else{console.log('es6+')}
+// 注入polyfill
+script(nomodule).
+  console.log('es5-');
+  document.write('<script src="https://lib.baomitu.com/babel-polyfill/7.4.4/polyfill.min.js"><\/script>')}
   
