@@ -4,7 +4,7 @@
 
 ## 说明
 
-用于日常开发的webpack4配置，除了基本配置外添加了多页面支持、使用pug替代默认的ejs模板、基本包含所有常用的功能配置。对vue提供开箱即用的支持，同时提供了一套library的打包配置，支持打包vue组件库和通常的umd库。react版见<<https://github.com/Iixianjie/launch-template-webpack-v4>>
+用于日常开发的webpack4配置，除了基本配置外添加了多页面支持、使用pug替代默认的ejs模板、基本包含所有常用的功能配置。对vue、react提供开箱即用的支持，同时提供了一套library的打包配置。
 
 <br>
 
@@ -77,7 +77,7 @@ module.exports = {
 
 <br>
 
-## 开箱即用的vue配置
+## 开箱即用的vue、react配置
 
 * 基于vueloader和@vue/babel-preset-app插件的vue配置，对vue文件的处理方式与vue-cli完全一致。
 
