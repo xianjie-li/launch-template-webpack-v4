@@ -11,7 +11,7 @@ const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 const conf = require('./config');
 const getModules = require('./utils/util').getModules;
-require('./buildEntryFile');
+require('./utils/buildEntryFile');
 const enrtys = require('../entrys.json');
 
 module.exports = ({ NODE_ENV }) => {
