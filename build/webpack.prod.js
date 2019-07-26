@@ -41,22 +41,23 @@ module.exports = env => {
       splitChunks: {
         // 包含所有chunks
         chunks: 'all', // 无视种类进行分包
-        minSize: 0, // 可以分包的情况下不计大小
+        minSize: 1, // 可以分包的情况下不计大小
         automaticNameDelimiter: '-',
+        // name: true,
         cacheGroups: {
-          commons: {
-            minChunks: 2,
-            reuseExistingChunk: true,
-            priority: -10,
-            name: 'commons',
-          },
-          vendors: {
+          vendor: {
             test: /[\\/]node_modules[\\/]/,
             minChunks: 2,
             reuseExistingChunk: true,
-            priority: -5,
-            name: 'vendors'
-          }
+            priority: 10,
+            name: 'vendor'
+          },
+          common: {
+            minChunks: 2,
+            reuseExistingChunk: true,
+            priority: 1,
+            name: 'common',
+          },
         }
       }
     },

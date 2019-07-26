@@ -48,7 +48,7 @@ module.exports = ({ NODE_ENV, ...env }) => {
       minify: false,
       hash: conf.htmlAssetsHash,
       cache: false,
-      chunks: ['runtime', 'vendors', 'commons', v.title],
+      chunks: ['runtime', 'vendor', 'common', v.title],
       templateParameters: {
         ...conf,
         title: v.title,
