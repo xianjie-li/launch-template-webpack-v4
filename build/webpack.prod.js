@@ -39,24 +39,23 @@ module.exports = env => {
       ],
       runtimeChunk: 'single',
       splitChunks: {
-        // 包含所有chunks
-        chunks: 'all', // 无视种类进行分包
-        minSize: 1, // 可以分包的情况下不计大小
+        chunks: 'all', // 无视种类进
+        minSize: 0, // 不计大小
         automaticNameDelimiter: '-',
-        // name: true,
         cacheGroups: {
-          vendor: {
-            test: /[\\/]node_modules[\\/]/,
-            minChunks: 2,
-            reuseExistingChunk: true,
-            priority: 10,
-            name: 'vendor'
-          },
           common: {
             minChunks: 2,
-            reuseExistingChunk: true,
-            priority: 1,
             name: 'common',
+            reuseExistingChunk: true,
+            priority: -5,
+          },
+          // minChunks是以多入口为计算规则的，为了防止单入口是不生成vendor将其设置为1
+          vendor: {
+            test: /[\\/]node_modules[\\/]/,
+            minChunks: 1,
+            name: 'vendor',
+            reuseExistingChunk: true,
+            priority: 0,
           },
         }
       }

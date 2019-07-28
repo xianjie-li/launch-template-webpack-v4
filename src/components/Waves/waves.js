@@ -4,10 +4,10 @@
  */
 
 (function (window) {
-  'use strict';
+  
 
   var Waves = Waves || {};
-  var $$ = document.querySelectorAll.bind(document);
+  let $$ = document.querySelectorAll.bind(document);
 
   // Find exact position of element
   function isWindow(obj) {
@@ -19,13 +19,13 @@
   }
 
   function offset(elem) {
-    var docElem;
+    let docElem;
 
-    var win;
+    let win;
 
-    var box = { top: 0, left: 0 };
+    let box = { top: 0, left: 0 };
 
-    var doc = elem && elem.ownerDocument;
+    let doc = elem && elem.ownerDocument;
 
     docElem = doc.documentElement;
 
@@ -40,11 +40,11 @@
   }
 
   function convertStyle(obj) {
-    var style = '';
+    let style = '';
 
-    for (var a in obj) {
+    for (let a in obj) {
       if (obj.hasOwnProperty(a)) {
-        style += a + ':' + obj[a] + ';';
+        style += `${a  }:${  obj[a]  };`;
       }
     }
 
@@ -55,7 +55,7 @@
     // Effect delay
     duration: 750,
 
-    show: function (e, element) {
+    show(e, element) {
       // Disable right click
       if (e.button === 2) {
         return false;
@@ -89,7 +89,7 @@
       // Set ripple position
       var rippleStyle = {
         top: relativeY + 'px',
-        left: relativeX + 'px',
+        left: relativeX + 'px'
       };
 
       ripple.className = ripple.className + ' waves-notransition';
@@ -121,7 +121,7 @@
       ripple.setAttribute('style', convertStyle(rippleStyle));
     },
 
-    hide: function (e) {
+    hide(e) {
       TouchHandler.touchup(e);
 
       var el = this;
@@ -149,7 +149,7 @@
       }
 
       // Fade out ripple after delay
-      setTimeout(function () {
+      setTimeout(function() {
         var style = {
           top: relativeY + 'px',
           left: relativeX + 'px',
@@ -164,12 +164,12 @@
           '-moz-transform': scale,
           '-ms-transform': scale,
           '-o-transform': scale,
-          transform: scale,
+          transform: scale
         };
 
         ripple.setAttribute('style', convertStyle(style));
 
-        setTimeout(function () {
+        setTimeout(function() {
           try {
             el.removeChild(ripple);
           } catch (e) {
@@ -180,7 +180,7 @@
     },
 
     // Little hack to make <input> can perform waves effect
-    wrapInput: function (elements) {
+    wrapInput(elements) {
       for (var a = 0; a < elements.length; a++) {
         var el = elements[a];
 
@@ -227,13 +227,13 @@
      * within the 500ms. Cannot mouseup between touchstart and
      * touchend, nor in the 500ms after touchend. */
     touches: 0,
-    allowEvent: function (e) {
+    allowEvent(e) {
       var allow = true;
 
       if (e.type === 'touchstart') {
         TouchHandler.touches += 1; // push
       } else if (e.type === 'touchend' || e.type === 'touchcancel') {
-        setTimeout(function () {
+        setTimeout(function() {
           if (TouchHandler.touches > 0) {
             TouchHandler.touches -= 1; // pop after 500ms
           }
@@ -244,7 +244,7 @@
 
       return allow;
     },
-    touchup: function (e) {
+    touchup(e) {
       TouchHandler.allowEvent(e);
     },
   };
@@ -258,13 +258,13 @@
       return null;
     }
 
-    var element = null;
-    var target = e.target || e.srcElement;
+    let element = null;
+    let target = e.target || e.srcElement;
 
     while (target.parentNode !== null) {
       if (
-        !(target instanceof SVGElement) &&
-        target.className.indexOf('waves-effect') !== -1
+        !(target instanceof SVGElement)
+        && target.className.indexOf('waves-effect') !== -1
       ) {
         element = target;
         break;
@@ -278,7 +278,7 @@
    * Bubble the click and show effect if .waves-effect elem was found
    */
   function showEffect(e) {
-    var element = getWavesEffectElement(e);
+    let element = getWavesEffectElement(e);
 
     if (element !== null) {
       Effect.show(e, element);
@@ -336,9 +336,9 @@
 
   document.addEventListener(
     'DOMContentLoaded',
-    function () {
+    () => {
       Waves.displayEffect();
     },
     false,
   );
-})(window);
+}(window));

@@ -1,9 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 const App = () => {
-  return (
-    <div>hello world</div>
-  );
+  const b = 123;
+
+  useEffect(() => {
+    setTimeout(() => {
+      console.log(b);
+    });
+  }, [b]);
+
+  return <div>hello world</div>;
 };
 
 export default App;
