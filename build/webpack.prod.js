@@ -3,8 +3,7 @@ const merge = require('webpack-merge');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const TerserJSPlugin = require('terser-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
-  .BundleAnalyzerPlugin;
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const CopyPlugin = require('copy-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
 const HtmlBeautifyPlugin = require('html-beautify-webpack-plugin');
@@ -13,17 +12,16 @@ const conf = require('./config');
 
 const baseConf = require('./webpack.base');
 
-module.exports = env => {
-
-  let config = merge(baseConf(env), {
+module.exports = (env) => {
+  const config = merge(baseConf(env), {
     mode: 'production',
 
     output: {
-      filename: `${conf.publicDirName}/js/[name]${conf.hash ? '.[chunkhash]' : ''}.js`,
+      filename: `${ conf.publicDirName }/js/[name]${ conf.hash ? '.[chunkhash]' : '' }.js`,
       path: path.resolve(__dirname, '../dist'),
-      chunkFilename: `${conf.publicDirName}/js/[name]${conf.hash ? '.[chunkhash]' : ''}.js`,
+      chunkFilename: `${ conf.publicDirName }/js/[name]${ conf.hash ? '.[chunkhash]' : '' }.js`,
       publicPath: conf.publicPath,
-      pathinfo: false
+      pathinfo: false,
     },
     devtool: false,
     optimization: {
@@ -31,11 +29,11 @@ module.exports = env => {
         new TerserJSPlugin({
           terserOptions: {
             compress: {
-              drop_console: conf.dropConsole
-            }
-          }
+              drop_console: conf.dropConsole,
+            },
+          },
         }),
-        new OptimizeCSSAssetsPlugin({})
+        new OptimizeCSSAssetsPlugin({}),
       ],
       runtimeChunk: 'single',
       splitChunks: {
@@ -57,8 +55,8 @@ module.exports = env => {
             reuseExistingChunk: true,
             priority: 0,
           },
-        }
-      }
+        },
+      },
     },
 
     plugins: [
@@ -66,8 +64,8 @@ module.exports = env => {
       new CopyPlugin([
         {
           from: path.resolve(__dirname, '../public'),
-          to: path.resolve(__dirname, `../dist/${conf.publicDirName}`)
-        }
+          to: path.resolve(__dirname, `../dist/${ conf.publicDirName }`),
+        },
       ]),
       new HtmlBeautifyPlugin({
         config: {
@@ -77,8 +75,8 @@ module.exports = env => {
           indent_inner_html: true,
           preserve_newlines: true,
         },
-        replace: [' type="text/javascript"']
-      })
+        replace: [' type="text/javascript"'],
+      }),
     ],
     stats: {
       assets: true,
@@ -86,8 +84,8 @@ module.exports = env => {
       errorDetails: false,
       modules: false,
       entrypoints: false,
-      children: false
-    }
+      children: false,
+    },
   });
 
   if (conf.gizp) {
@@ -97,8 +95,8 @@ module.exports = env => {
         algorithm: 'gzip',
         test: /\.(js|css)$/,
         threshold: 10240,
-        minRatio: 0.8
-      })
+        minRatio: 0.8,
+      }),
     );
   }
 
@@ -106,8 +104,8 @@ module.exports = env => {
     config.plugins.push(
       new BundleAnalyzerPlugin({
         analyzerMode: 'static', // disabled、server、static
-        openAnalyzer: false
-      })
+        openAnalyzer: false,
+      }),
     );
   }
 

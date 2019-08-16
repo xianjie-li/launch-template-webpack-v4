@@ -3,21 +3,20 @@ const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HappyPack = require('happypack');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
-  .BundleAnalyzerPlugin;
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 const TerserJSPlugin = require('terser-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 const conf = require('./config');
-const getModules = require('./utils/util').getModules;
-require('./utils/buildEntryFile');
-const enrtys = require('../entrys.json');
+const { getModules } = require('./utils/util');
+
+const enrtys = require('./entrys.json');
 
 module.exports = ({ NODE_ENV }) => {
   const devMode = NODE_ENV === 'dev';
 
-  let config = {
+  const config = {
     context: path.resolve(__dirname),
     mode: 'production',
     entry: enrtys,
@@ -27,7 +26,7 @@ module.exports = ({ NODE_ENV }) => {
       // chunkFilename: 'chunks/[name].[chunkhash].js',
       publicPath: './',
       library: ['blinkUi', '[name]'],
-      libraryTarget: 'umd'
+      libraryTarget: 'umd',
     },
 
     optimization: {
@@ -37,11 +36,11 @@ module.exports = ({ NODE_ENV }) => {
           terserOptions: {
             compress: {
               // drop_console: conf.dropConsole
-            }
-          }
+            },
+          },
         }),
-        new OptimizeCSSAssetsPlugin({})
-      ]
+        new OptimizeCSSAssetsPlugin({}),
+      ],
     },
 
     externals: [
@@ -55,13 +54,13 @@ module.exports = ({ NODE_ENV }) => {
         lodash: {
           commonjs: 'lodash',
           amd: 'lodash',
-          root: '_'
+          root: '_',
         },
-      }
+      },
     ],
 
     resolve: {
-      extensions: conf.extensions
+      extensions: conf.extensions,
     },
 
     module: getModules(devMode, MiniCssExtractPlugin),
@@ -69,17 +68,17 @@ module.exports = ({ NODE_ENV }) => {
     plugins: [
       new VueLoaderPlugin(),
       new HappyPack({
-        loaders: ['babel-loader']
+        loaders: ['babel-loader'],
       }),
       new webpack.ProgressPlugin(),
       new BundleAnalyzerPlugin({
         analyzerMode: 'static', // disabled、server、static
-        openAnalyzer: false
+        openAnalyzer: false,
       }),
       new MiniCssExtractPlugin({
-        filename: '[name]/style/index.css'
-      })
-    ]
+        filename: '[name]/style/index.css',
+      }),
+    ],
   };
 
   return config;

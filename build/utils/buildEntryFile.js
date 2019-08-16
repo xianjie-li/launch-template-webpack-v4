@@ -12,33 +12,33 @@ const chalk = require('chalk');
 const ignoreDir = ['Style', 'common', 'assets', 'style'];
 
 const baseEntry = {
-  index: path.join(__dirname, '../packages/index.js')
+  index: path.join(__dirname, '../../packages/index.js'),
 };
 
-let entrys = glob.sync(
+const entrys = glob.sync(
   path.join(
     __dirname,
-    '../packages/',
-    `**/!(${ignoreDir.join('|')})*/index.js`
-  )
+    '../../packages/',
+    `**/!(${ignoreDir.join('|')})*/index.js`,
+  ),
 );
 
-entrys.forEach(v => {
-  let filePath = path.resolve(v);
-  let slices = path.dirname(filePath).split(path.sep);
-  let name = slices[slices.length - 1];
+entrys.forEach((v) => {
+  const filePath = path.resolve(v);
+  const slices = path.dirname(filePath).split(path.sep);
+  const name = slices[slices.length - 1];
   baseEntry[name] = filePath;
 });
 
 fs.outputJson(
   path.join(__dirname, '../entrys.json'),
   baseEntry,
-  err => {
+  (err) => {
     if (err) {
       console.error(err);
       return;
     }
 
-    console.log('入口创建成功! -> ' + chalk.blue('/entrys.json'));
-  }
+    console.log(`入口创建成功! -> ${chalk.blue('/entrys.json')}`);
+  },
 );

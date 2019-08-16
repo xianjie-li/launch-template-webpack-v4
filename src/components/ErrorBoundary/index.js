@@ -1,2 +1,1 @@
-import './style.scss';
-export { default } from './ErrorBoundary';
+export { default } from './ErrorBoundary.jsx';

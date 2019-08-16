@@ -4,7 +4,7 @@ import Icon from '../Icon';
 
 class ErrorBoundary extends React.Component {
   state = {
-    hasError: false,
+    hasError: false
   };
 
   componentDidCatch(error, info) {
@@ -17,7 +17,9 @@ class ErrorBoundary extends React.Component {
       // You can render any custom fallback UI
       return (
         <div className="bk-errorBoundary">
-          <p><Icon type="error" size={56} /></p>
+          <p>
+            <Icon type="error" size={56} />
+          </p>
           页面加载异常，请刷新页面或稍后重试！
           <a onClick={() => location.reload()}>刷新</a>
         </div>
@@ -26,6 +28,5 @@ class ErrorBoundary extends React.Component {
     return this.props.children;
   }
 }
-
 
 export default ErrorBoundary;

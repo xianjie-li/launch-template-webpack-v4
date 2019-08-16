@@ -9,8 +9,7 @@ const baseConf = require('./webpack.base');
 
 const conf = require('./config');
 
-module.exports = async env => {
-
+module.exports = async (env) => {
   const port = await portfinder.getPortPromise();
 
   return merge(baseConf(env), {
@@ -22,8 +21,8 @@ module.exports = async env => {
     resolve: {
       alias: {
         /* 用于开启hooks热加载 */
-        'react-dom': '@hot-loader/react-dom'
-      }
+        'react-dom': '@hot-loader/react-dom',
+      },
     },
     devtool: 'eval-source-map',
     devServer: {
@@ -33,10 +32,10 @@ module.exports = async env => {
       port,
       hot: true,
       // publicPath: '/',   默认
-      quiet: true,  // 适应FriendlyErrorsWebpackPlugin
+      quiet: true, // 适应FriendlyErrorsWebpackPlugin
       overlay: {
         warnings: true,
-        errors: true
+        errors: true,
       },
       proxy: conf.proxy,
 
@@ -49,20 +48,20 @@ module.exports = async env => {
           const changedFiles = Object.keys(compiler.watchFileSystem.watcher.mtimes);
 
           if (
-            this.hot &&
-            changedFiles.some(filePath => watchFiles.includes(path.parse(filePath).ext))
+            this.hot
+            && changedFiles.some(filePath => watchFiles.includes(path.parse(filePath).ext))
           ) {
             server.sockWrite(server.sockets, 'content-changed');
           }
         });
-      }
+      },
     },
     plugins: [
       new webpack.HotModuleReplacementPlugin(),
       new FriendlyErrorsWebpackPlugin({
         compilationSuccessInfo: {
-          messages: ['You application is running here http://localhost:' + port],
-          notes: ['按住ctrl点击链接在浏览器打开']
+          messages: [`You application is running here http://localhost:${port}`],
+          notes: ['按住ctrl点击链接在浏览器打开'],
         },
         // 桌面通知
         onErrors: (severity, errors) => {
@@ -75,11 +74,10 @@ module.exports = async env => {
               subtitle: error.file || '',
               sound: 'Glass',
             });
-            return;
           }
         },
       }),
-    ]
+    ],
 
   });
 };

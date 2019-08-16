@@ -11,22 +11,22 @@ const pugFilters = require('./pugFilters');
  *  3. 对于不想被匹配的文件，可以放到更深一级的目录或以 _ 作为前缀 */
 exports.getEntrys = () => {
   try {
-    let entrys = glob.sync(
-      path.resolve(__dirname, '../../src/page/', '**/!(_|pageInfo)*.{j,t}s')
+    const entrys = glob.sync(
+      path.resolve(__dirname, '../../src/page/', '**/!(_|pageInfo)*.{j,t}s'),
     );
 
     if (utils.isArray(entrys) && entrys.length > 0) {
-      let formatEntry = {};   // 存放entry信息
-      let template = [];   // 存放模板信息
+      const formatEntry = {}; // 存放entry信息
+      const template = []; // 存放模板信息
 
-      entrys.forEach(v => {
-        let baseName = path.basename(v).replace(/\.(js|ts)/, '');
-        let dirName = path.dirname(v);
+      entrys.forEach((v) => {
+        const baseName = path.basename(v).replace(/\.(js|ts)/, '');
+        const dirName = path.dirname(v);
 
         // 查找入口js所属路径下的模板文件(pug|html)
-        let tpl = glob.sync(path.resolve(dirName) + '*/*.{pug,html}');
+        const tpl = glob.sync(`${path.resolve(dirName)}*/*.{pug,html}`);
         // 该目录下的pageInfo.js文件作为额外信息注入模板
-        let pageInfo = glob.sync(path.resolve(dirName) + '*/pageInfo.{j,t}s');
+        let pageInfo = glob.sync(`${path.resolve(dirName)}*/pageInfo.{j,t}s`);
 
         if (pageInfo.length) {
           pageInfo = require(pageInfo[0]);
@@ -35,17 +35,17 @@ exports.getEntrys = () => {
         formatEntry[baseName] = v;
 
         // 放进模板列表
-        tpl[0] &&
-          template.push({
-            title: baseName,
-            template: tpl[0],
-            pageInfo
-          });
+        tpl[0]
+        && template.push({
+          title: baseName,
+          template: tpl[0],
+          pageInfo,
+        });
       });
 
       return {
         entrys: formatEntry,
-        template
+        template,
       };
     }
 
@@ -56,33 +56,28 @@ exports.getEntrys = () => {
 };
 
 /* 传入环境变量、输出目录名，返回file-loader option */
-exports.fileLoaderOption = (env, dirName, hash) => {
-  return {
-    loader: 'file-loader',
-    options: {
-      name:
+exports.fileLoaderOption = (env, dirName, hash) => ({
+  loader: 'file-loader',
+  options: {
+    name:
         env === 'dev'
           ? '[name].[ext]'
           : `[name]${hash ? '.[hash:7]' : ''}.[ext]`,
-      outputPath: dirName // 输出目录不同区分
-    }
-  };
-};
+    outputPath: dirName, // 输出目录不同区分
+  },
+});
 
 exports.getModules = (devMode, MiniCssExtractPlugin) => {
-
-  const fileLoaderOption = (dirName) => {
-    return {
-      loader: 'file-loader',
-      options: {
-        name:
-        devMode
-          ? '[name].[ext]'
-          : `[name]${conf.hash ? '.[hash:7]' : ''}.[ext]`,
-        outputPath: dirName // 输出目录不同区分
-      }
-    };
-  };
+  const fileLoaderOption = dirName => ({
+    loader: 'file-loader',
+    options: {
+      name:
+          devMode
+            ? '[name].[ext]'
+            : `[name]${conf.hash ? '.[hash:7]' : ''}.[ext]`,
+      outputPath: dirName, // 输出目录不同区分
+    },
+  });
 
   const getStyleConf = (HasCssModule = false) => ([
     {
@@ -90,8 +85,8 @@ exports.getModules = (devMode, MiniCssExtractPlugin) => {
         ? 'vue-style-loader'
         : MiniCssExtractPlugin.loader,
       options: {
-        publicPath: '../../'
-      }
+        publicPath: '../../',
+      },
     },
     {
       loader: 'css-loader',
@@ -100,21 +95,21 @@ exports.getModules = (devMode, MiniCssExtractPlugin) => {
         modules: HasCssModule ? {
           localIdentName: '[local]-[hash:base64:5]',
         } : false,
-      }
+      },
     },
     {
       loader: 'postcss-loader',
       options: {
-        sourceMap: devMode
-      }
+        sourceMap: devMode,
+      },
     },
     {
       loader: 'sass-loader',
       options: {
         ...conf.sassOption,
-        sourceMap: devMode
-      }
-    }
+        sourceMap: devMode,
+      },
+    },
   ]);
 
   return {
@@ -124,12 +119,12 @@ exports.getModules = (devMode, MiniCssExtractPlugin) => {
         test: /\.(js|jsx)$/,
         exclude: /(node_modules|bower_components)/,
         // include: resolve('src'),
-        use: 'happypack/loader'
+        use: 'happypack/loader',
       },
       /* ---------tpl--------- */
       {
         test: /\.vue$/,
-        loader: 'vue-loader'
+        loader: 'vue-loader',
       },
       {
         test: /\.(pug|jade)$/,
@@ -137,19 +132,19 @@ exports.getModules = (devMode, MiniCssExtractPlugin) => {
           // 这条规则应用到 Vue 组件内的 `<template lang="pug">`
           {
             resourceQuery: /^\?vue/,
-            use: ['pug-plain-loader']
+            use: ['pug-plain-loader'],
           },
           {
             use: [
               {
                 loader: 'pug-loader',
                 options: {
-                  filters: pugFilters
-                }
-              }
-            ]
-          }
-        ]
+                  filters: pugFilters,
+                },
+              },
+            ],
+          },
+        ],
       },
       /* ---------style--------- */
       {
@@ -159,7 +154,7 @@ exports.getModules = (devMode, MiniCssExtractPlugin) => {
           /* vue单文件 + cssModule */
           {
             resourceQuery: /module/,
-            use: getStyleConf(true)
+            use: getStyleConf(true),
           },
           /**
            *  常规样式文件
@@ -167,30 +162,30 @@ exports.getModules = (devMode, MiniCssExtractPlugin) => {
            *  */
           {
             use: getStyleConf(),
-          }
-        ]
+          },
+        ],
       },
       /* 适配常规的cssmodule文件 */
       {
         test: /\.module\.(sa|sc|c)ss$/,
-        use: getStyleConf(true)
+        use: getStyleConf(true),
       },
       /* ---------文件--------- */
       /* 图 */
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
-        use: fileLoaderOption(`${conf.publicDirName}/img/`,)
+        use: fileLoaderOption(`${conf.publicDirName}/img/`),
       },
       /* 影 */
       {
         test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
-        use: fileLoaderOption(`${conf.publicDirName}/video/`)
+        use: fileLoaderOption(`${conf.publicDirName}/video/`),
       },
       /* 字 */
       {
         test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
-        use: fileLoaderOption(`${conf.publicDirName}/font/`)
-      }
-    ]
+        use: fileLoaderOption(`${conf.publicDirName}/font/`),
+      },
+    ],
   };
 };

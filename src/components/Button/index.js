@@ -1,3 +1,1 @@
-import './style.scss';
-
-export { default } from './Button';
+export { default } from './Button.jsx';

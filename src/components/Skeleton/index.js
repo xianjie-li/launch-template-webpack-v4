@@ -1,3 +1,1 @@
-import './style.scss';
-
-export { default } from './Skeleton';
+export { default } from './Skeleton.jsx';

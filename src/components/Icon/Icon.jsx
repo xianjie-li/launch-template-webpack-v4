@@ -1,19 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { setPxforNumber, shakeFlasy } from '../common/util';
+import { setPxforNumber, shakeFalsy } from '../common/util';
 import iconMap from './iconMap';
 
 import cls from 'classnames';
 
 const Icon = props => {
-  const property = shakeFlasy({
+  const property = shakeFalsy({
     className: cls(props.className, iconMap[props.type], 'bk-icon', props.spin && 'bk-spin'),
   });
 
   const sty = props.style || {};
 
-  const style = shakeFlasy({
+  const style = shakeFalsy({
     ...sty,
     fontSize: setPxforNumber(props.size),
     color: props.color,

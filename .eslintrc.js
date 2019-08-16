@@ -40,17 +40,32 @@ module.exports = {
     indent: ['error', 2],
     // 只能够使用单引号
     quotes: ['error', 'single'],
-
+    // 使用分号
+    semi: ['error', 'always'],
     // 不限制换行符
     'linebreak-style': ['off'],
+    // 不限制依赖类型
+    'import/no-extraneous-dependencies': 'off',
+    // 允许使用console
+    'no-console': 'off',
+
+    'no-restricted-syntax': 'off',
+
+    'consistent-return': 'off',
+
+    'global-require': 'off',
+
+    'import/no-dynamic-require': 'off',
+
+    'no-unused-expressions': 'off',
 
     /* ========== React ========== */
 
     // 不强制写proptype
     'react/prop-types': 'off',
-    // 使用分号
-    semi: ['error', 'always'],
+
     'react-hooks/rules-of-hooks': 'error',
-    'react-hooks/exhaustive-deps': 'warn'
+    'react-hooks/exhaustive-deps': 'warn',
+
   }
 };

@@ -1,3 +1,1 @@
-import './style.scss';
-
-export { default } from './Spin';
+export { default } from './Spin.jsx';

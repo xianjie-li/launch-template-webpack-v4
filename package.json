@@ -12,6 +12,7 @@
     "start": "webpack-dev-server --config ./build/webpack.dev.js --env.NODE_ENV=dev",
     "build": "webpack --config ./build/webpack.prod.js --env.NODE_ENV=prod",
     "build:lib": "node ./build/buildLib",
+    "build:entry": "node ./build/utils/buildEntryFile.js",
     "build:dll": "webpack --config ./build/webpack.dll.js"
   },
   "peerDependencies": {},

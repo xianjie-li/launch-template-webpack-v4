@@ -1,0 +1,146 @@
+@import "../../Style/index";
+
+$size: 32px;
+$grid-w: $size / 8;
+
+.bk-spin_wrap {
+  display: inline-block;
+  &.__mask {
+    background: $w-second;
+    display: flex;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 10;
+
+    .bk-spin_inner {
+      margin: auto;
+    }
+  }
+
+  &.__mask.__dark {
+    background: $b-second;
+
+    .bk-spin_tip {
+      color: $w-primary;
+    }
+  }
+}
+
+.bk-spin_inner {
+  text-align: center;
+}
+
+.bk-spin_inner.__small {
+  transform: scale(0.8);
+}
+
+.bk-spin_inner.__large {
+  transform: scale(1.4);
+}
+
+.bk-spin {
+  position: relative;
+  line-height: 0;
+  display: inline-block;
+  vertical-align: middle;
+  width: $size;
+  height: $size;
+  // margin: 24px;
+  user-select: none;
+  animation: bk-spin 2s infinite;
+
+  &_tip {
+    color: $b-primary;
+    font-size: $font-size-s;
+  }
+
+  & > * {
+    box-sizing: border-box;
+  }
+
+  & > div {
+    position: absolute;
+    display: inline-block;
+    width: $size / 2;
+    height: $size / 2;
+    border: 1px solid $theme-color;
+    animation: bk-spin 2s infinite;
+  }
+
+  &.__type3 {
+
+    & > div {
+      width: $size / 2 - $grid-w;
+      height: $size / 2 - $grid-w;
+    }
+
+    & > div:nth-child(1) {
+      background-color: rgba($theme-color, 0.8);
+      left: $grid-w;
+      top: $grid-w;
+    }
+
+    & > div:nth-child(2) {
+      background-color: rgba($theme-color, 0.6);
+      right: $grid-w;
+      top: $grid-w;
+    }
+
+    & > div:nth-child(3) {
+      background-color: rgba($theme-color, 0.4);
+      left: $grid-w;
+      bottom: $grid-w;
+    }
+
+    & > div:nth-child(4) {
+      background-color: rgba($theme-color, 0.2);
+      right: $grid-w;
+      bottom: $grid-w;
+    }
+  }
+
+  &.__type2, &.__type1 {
+
+    & > div {
+      width: $size / 2;
+      height: $size / 2;
+      border: 1px solid rgba($theme-color, 0.4);
+    }
+
+    & > div:nth-child(1) {
+      right: $grid-w;
+      bottom: $grid-w;
+      background-color: rgba($theme-color, 0.4);
+    }
+
+    & > div:nth-child(2) {
+      left: $grid-w;
+      bottom: $grid-w;
+      background-color: rgba($theme-color, 0.6);
+    }
+
+    & > div:nth-child(3) {
+      top: $grid-w;
+      right: $grid-w;
+      background-color: rgba($theme-color, 0.6);
+    }
+
+    & > div:nth-child(4) {
+      left: $grid-w;
+      top: $grid-w;
+      background-color: rgba($theme-color, 0.2);
+    }
+  }
+
+  &.__type1 {
+    animation: bk-spin 1.5s linear infinite;
+    & > div {
+      border-radius: 50%;
+    }
+  }
+
+}
+

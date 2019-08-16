@@ -1,8 +1,7 @@
-import './style.scss';
-import Form from './Form';
-import FormItem from './FormItem';
-import FormTitle from './FormTitle';
-import FormFoot from './FormFoot';
+import Form from './Form.jsx';
+import FormItem from './FormItem.jsx';
+import FormTitle from './FormTitle.jsx';
+import FormFoot from './FormFoot.jsx';
 
 Form.Item = FormItem;
 Form.Title = FormTitle;
