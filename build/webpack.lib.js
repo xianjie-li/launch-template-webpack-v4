@@ -44,19 +44,19 @@ module.exports = ({ NODE_ENV }) => {
     },
 
     externals: [
-      /^@babel\/runtime/,
-      /^lodash/,
-      {
-        '@lxjx/utils': 'utils',
-        vue: 'Vue',
-        react: 'React',
-        moment: 'moment',
-        lodash: {
-          commonjs: 'lodash',
-          amd: 'lodash',
-          root: '_',
-        },
-      },
+      // /^@babel\/runtime/,
+      // /^lodash/,
+      // {
+      //   '@lxjx/utils': 'utils',
+      //   vue: 'Vue',
+      //   react: 'React',
+      //   moment: 'moment',
+      //   lodash: {
+      //     commonjs: 'lodash',
+      //     amd: 'lodash',
+      //     root: '_',
+      //   },
+      // },
     ],
 
     resolve: {

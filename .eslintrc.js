@@ -59,10 +59,25 @@ module.exports = {
 
     'no-unused-expressions': 'off',
 
+    'import/prefer-default-export': 'off',
+
+    'arrow-body-style': 'off',
+    // 不限制引入顺序
+    'import/order': 'off',
+    'import/no-unresolved': 'off',
+    // 允许修改参数
+    'no-param-reassign': 'off',
+
     /* ========== React ========== */
 
     // 不强制写proptype
     'react/prop-types': 'off',
+    // 不强制对prop解构
+    'react/destructuring-assignment': 'off',
+    //
+    'react/require-default-props': 'off',
+    'react/forbid-prop-types': 'off',
+    'react/jsx-filename-extension': 'off',
 
     'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'warn',
