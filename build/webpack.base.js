@@ -13,6 +13,9 @@ const conf = require('./config');
 
 // eslint-disable-next-line no-unused-vars
 module.exports = ({ NODE_ENV, ...env }) => {
+
+  const devMode = NODE_ENV === 'dev';
+
   /* 配置环境变量 */
   log.log(` 当前环境: ${chalk.cyan(NODE_ENV)}`);
   const envDefine = conf.env[NODE_ENV];
@@ -20,8 +23,11 @@ module.exports = ({ NODE_ENV, ...env }) => {
     envDefine[key] = JSON.stringify(envDefine[key]);
   }
 
-  const devMode = NODE_ENV === 'dev';
+  /* 将公共地址暴露到全局, 项目中可以通过publicPath/xx来访问对应的内容 */
+  const publicPath = devMode ? '' : conf.publicPath + conf.publicDirName;
+  envDefine.PUBLIC = JSON.stringify(publicPath);
 
+  
   const entryInfos = util.getEntrys();
 
   /* 当载入全部入口被关闭时，过滤掉不被pageList包含的入口文件
@@ -52,7 +58,7 @@ module.exports = ({ NODE_ENV, ...env }) => {
       ...conf,
       title: v.title,
       /* 开发环境publicPath直接设置为空，页面中通过#{public}/来匹配public目录的内容 */
-      public: devMode ? '' : conf.publicPath + conf.publicDirName,
+      public: publicPath,
       page: v.pageInfo,
     },
   }));

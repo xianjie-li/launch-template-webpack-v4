@@ -4,8 +4,11 @@ const fs = require('node-fs-extra');
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const log = require('./utils/log');
+const CopyPlugin = require('copy-webpack-plugin');
 
 const libConf = require('./webpack.lib');
+
+const enrtys = require('./entrys.json');
 
 function build(webpackConfig, cb) {
   const spinner = ora('正在构建...');
@@ -57,12 +60,20 @@ build(libConf({ NODE_ENV: 'prod' }), () => {
   singleConfMin.output.filename = '[name]/index.min.js';
   singleConfMin.optimization.minimize = true;
 
+
+  const libKeys = Object.keys(enrtys);
+  const copyList = libKeys.map(key => ({
+    from: './template/style/', 
+    to: path.resolve(__dirname, '../lib/', key + '/style/'),
+  }));
+
   singleConfMin.plugins.pop();
 
   singleConfMin.plugins.push(
     new MiniCssExtractPlugin({
       filename: '[name]/style/index.min.css',
     }),
+    new CopyPlugin(copyList),
   );
 
   build(singleConfMin, () => {
