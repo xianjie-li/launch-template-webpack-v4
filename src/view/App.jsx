@@ -1,5 +1,11 @@
 import React, { useEffect } from 'react';
 
+const obj = {
+  a: {
+    b: 345,
+  },
+};
+
 const App = () => {
   const b = 123;
 
@@ -9,7 +15,11 @@ const App = () => {
     });
   }, [b]);
 
-  return <div>hello world</div>;
+  return (
+    <div>
+      hello world
+    </div>
+  );
 };
 
 export default App;

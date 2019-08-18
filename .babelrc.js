@@ -1,7 +1,7 @@
 const conf = require('./build/config');
 
 /* vue的jsx插件跟react的冲突，需要手动配置 */
-/** 
+/**
  * 关于@vue/babel-preset-app的备注
  * 关闭自动polyfill检测改为手动引入防止边角情况
  * 此预设已包含@babel/plugin-transform-runtime、@babel/preset-env
@@ -9,10 +9,13 @@ const conf = require('./build/config');
  * Dynamic Import Syntax
  * Proposal Class Properties
  * Proposal Decorators (legacy)
-  */
+ */
 const vuePreset = [['@vue/babel-preset-app', { useBuiltIns: false }]];
 
-const reactPreset = [['@babel/preset-env', { useBuiltIns: false }], '@babel/preset-react'];
+const reactPreset = [
+  ['@babel/preset-env', { useBuiltIns: false }],
+  '@babel/preset-react'
+];
 
 let presets = null;
 
@@ -29,21 +32,20 @@ let plugins = [
       useESModules: false
     }
   ],
+  '@babel/plugin-proposal-optional-chaining',
   ['@babel/plugin-proposal-class-properties', { loose: false }],
-  '@babel/plugin-syntax-dynamic-import',
+  '@babel/plugin-syntax-dynamic-import'
 ];
 
 /* 区分配置 */
-if(conf.v === 'react') {
+if (conf.v === 'react') {
   presets = reactPreset;
-  plugins.push(...[
-    'react-hot-loader/babel',
-  ])
+  plugins.push(...['react-hot-loader/babel']);
 } else {
   presets = vuePreset;
 }
 
 module.exports = {
   presets,
-  plugins,
+  plugins
 };
