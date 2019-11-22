@@ -6,5 +6,5 @@ import HelloWorld from '@/vue/HelloWorld';
 
 new Vue({
   el: '#root',
-  render: h => h(HelloWorld)
+  render: h => h(HelloWorld),
 });
