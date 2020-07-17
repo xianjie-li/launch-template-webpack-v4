@@ -73,7 +73,7 @@
   "dependencies": {
     "@babel/runtime": "^7.5.5",
     "@lxjx/utils": "^1.0.2",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "vue": "^2.6.10"
