@@ -54,7 +54,7 @@
     "portfinder": "^1.0.21",
     "postcss-loader": "^3.0.0",
     "prettier": "^1.18.2",
-    "pug": "^2.0.4",
+    "pug": "^3.0.1",
     "pug-loader": "^2.4.0",
     "pug-plain-loader": "^1.0.0",
     "react-hot-loader": "^4.12.10",
